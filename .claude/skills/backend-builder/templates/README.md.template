@@ -1,0 +1,189 @@
+# Backend API
+
+A production-ready Express.js backend with TypeScript, PostgreSQL, Redis, and comprehensive API documentation.
+
+## Features
+
+- **Express.js** with TypeScript
+- **PostgreSQL** database with Prisma ORM
+- **Redis** for caching
+- **OpenAPI/Swagger** documentation
+- **JWT authentication** (use `/better-auth` skill for comprehensive setup)
+- **Rate limiting** and security middleware
+- **Error handling** with custom error classes
+- **Docker** configuration
+- **PM2** process management
+- **Testing** with Jest
+- **CI/CD** with GitHub Actions
+
+## Prerequisites
+
+- Node.js >= 18.0.0
+- PostgreSQL >= 13
+- Redis >= 6
+- Docker (optional)
+
+## Getting Started
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Environment Setup
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Update the `.env` file with your configuration:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+REDIS_URL=redis://localhost:6379
+JWT_SECRET=your-secret-key
+```
+
+### 3. Database Setup
+
+Run migrations:
+
+```bash
+npm run migrate
+```
+
+Seed the database (optional):
+
+```bash
+npm run db:seed
+```
+
+### 4. Start Development Server
+
+```bash
+npm run dev
+```
+
+The API will be available at `http://localhost:3000`
+
+## Scripts
+
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm test` - Run tests with coverage
+- `npm run lint` - Lint code
+- `npm run type-check` - Type check without emitting
+- `npm run migrate` - Run database migrations
+- `npm run db:studio` - Open Prisma Studio
+
+## API Documentation
+
+Once the server is running, access the interactive API documentation at:
+
+- **Swagger UI**: http://localhost:3000/api-docs
+- **OpenAPI JSON**: http://localhost:3000/api-docs.json
+
+## Project Structure
+
+```
+src/
+├── config/          # Configuration files (database, swagger, etc.)
+├── controllers/     # Route controllers
+├── middleware/      # Custom middleware
+├── models/          # Database models (Prisma)
+├── routes/          # API routes
+├── services/        # Business logic
+├── types/           # TypeScript type definitions
+├── utils/           # Helper functions
+└── server.ts        # Application entry point
+```
+
+## Docker
+
+### Development
+
+```bash
+docker-compose -f docker-compose.dev.yml up
+```
+
+### Production
+
+```bash
+docker-compose up -d
+```
+
+## Deployment
+
+### With PM2
+
+```bash
+npm run build
+pm2 start ecosystem.config.js --env production
+```
+
+### With Docker
+
+```bash
+docker build -t backend-app .
+docker run -p 3000:3000 --env-file .env backend-app
+```
+
+## Testing
+
+Run all tests:
+
+```bash
+npm test
+```
+
+Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `NODE_ENV` | Environment (development/production) | development |
+| `PORT` | Server port | 3000 |
+| `DATABASE_URL` | PostgreSQL connection string | - |
+| `REDIS_URL` | Redis connection string | - |
+| `JWT_SECRET` | Secret for JWT signing | - |
+| `JWT_EXPIRES_IN` | JWT expiration time | 7d |
+| `ALLOWED_ORIGINS` | CORS allowed origins | * |
+| `LOG_LEVEL` | Logging level | info |
+
+## API Endpoints
+
+### Health Check
+
+- `GET /health` - Health check endpoint
+
+### Users (Example)
+
+- `GET /api/v1/users` - Get all users
+- `GET /api/v1/users/:id` - Get user by ID
+- `POST /api/v1/users` - Create user
+- `PUT /api/v1/users/:id` - Update user
+- `DELETE /api/v1/users/:id` - Delete user
+
+See `/api-docs` for complete API documentation.
+
+## Security
+
+- Helmet.js for security headers
+- CORS configuration
+- Rate limiting
+- Input validation and sanitization
+- JWT authentication
+- Environment-based secrets
+
+## License
+
+MIT
