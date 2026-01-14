@@ -10,7 +10,9 @@
       "Skill(skill-writer)",
       "Skill(skill-writer:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd backend-builder skill for Express.js backends\n\n- Complete SKILL.md with step-by-step instructions\n- Database setup reference \\(PostgreSQL, MongoDB, Redis\\)\n- API documentation reference \\(OpenAPI/Swagger\\)\n- Middleware patterns reference \\(auth, validation, errors\\)\n- Deployment reference \\(Docker, PM2, CI/CD\\)\n- Project templates \\(server.ts, tsconfig, package.json\\)\n- Integration with better-auth skill for authentication\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Allan\\Documents\\Dev projects\\projectstarter\\skills"
